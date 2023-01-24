@@ -10,4 +10,19 @@
         android:name="com.ju.telemedicineju.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/appoinmentFragment"
+        android:name="com.ju.telemedicineju.AppoinmentFragment"
+        android:label="fragment_appoinment"
+        tools:layout="@layout/fragment_appoinment" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.ju.telemedicineju.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/contacrUsFragment"
+        android:name="com.ju.telemedicineju.ContacrUsFragment"
+        android:label="fragment_contacr_us"
+        tools:layout="@layout/fragment_contacr_us" />
 </navigation>
