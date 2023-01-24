@@ -1,4 +1,4 @@
-package com.ju.telemedicineju.data.model
+package com.ju.telemedicineju.model
 
 data class MedicinePurchase(
     var Medicine_Purchase_ID: String,

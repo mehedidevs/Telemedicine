@@ -1,4 +1,4 @@
-package com.ju.telemedicineju.data.model.input
+package com.ju.telemedicineju.model.input
 
 data class Pharmacy(
     var Diagnosis_Center_ID: String,

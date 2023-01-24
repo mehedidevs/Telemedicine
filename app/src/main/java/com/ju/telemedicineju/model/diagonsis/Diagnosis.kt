@@ -1,4 +1,4 @@
-package com.ju.telemedicineju.data.model.diagonsis
+package com.ju.telemedicineju.model.diagonsis
 
 data class Diagnosis(
     var Diagnosis_ID: String,

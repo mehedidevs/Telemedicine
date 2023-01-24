@@ -1,4 +1,4 @@
-package com.ju.telemedicineju.data.model
+package com.ju.telemedicineju.model
 
 data class Payment(
     var Payment_ID: String,

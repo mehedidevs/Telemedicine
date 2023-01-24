@@ -1,4 +1,4 @@
-package com.ju.telemedicineju.data.model.input
+package com.ju.telemedicineju.model.input
 
 data class Patient(
     var Patient_ID: String,
