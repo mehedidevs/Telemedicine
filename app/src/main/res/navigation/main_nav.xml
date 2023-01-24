@@ -3,11 +3,65 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/startFragment">
 
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.ju.telemedicineju.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/startFragment"
+        android:name="com.ju.telemedicineju.StartFragment"
+        android:label="fragment_start"
+        tools:layout="@layout/fragment_start" >
+        <action
+            android:id="@+id/action_startFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/startFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_registerFragment"
+            app:destination="@id/registerFragment"
+            app:popUpTo="@id/startFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.ju.telemedicineju.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
+    <fragment
+        android:id="@+id/pharmacyFragment"
+        android:name="com.ju.telemedicineju.PharmacyFragment"
+        android:label="fragment_pharmacy"
+        tools:layout="@layout/fragment_pharmacy" />
+    <fragment
+        android:id="@+id/patientFragment"
+        android:name="com.ju.telemedicineju.PatientFragment"
+        android:label="fragment_patient"
+        tools:layout="@layout/fragment_patient" />
+    <fragment
+        android:id="@+id/medicineFragment"
+        android:name="com.ju.telemedicineju.MedicineFragment"
+        android:label="fragment_medicine"
+        tools:layout="@layout/fragment_medicine" />
+    <fragment
+        android:id="@+id/localPractitiorFragment"
+        android:name="com.ju.telemedicineju.LocalPractitiorFragment"
+        android:label="fragment_local_practitior"
+        tools:layout="@layout/fragment_local_practitior" />
+    <fragment
+        android:id="@+id/doctorFragment"
+        android:name="com.ju.telemedicineju.DoctorFragment"
+        android:label="fragment_doctor"
+        tools:layout="@layout/fragment_doctor" />
+    <fragment
+        android:id="@+id/diagnosisCenterFragment"
+        android:name="com.ju.telemedicineju.DiagnosisCenterFragment"
+        android:label="fragment_diagnosis_center"
+        tools:layout="@layout/fragment_diagnosis_center" />
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.ju.telemedicineju.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" />
 </navigation>
