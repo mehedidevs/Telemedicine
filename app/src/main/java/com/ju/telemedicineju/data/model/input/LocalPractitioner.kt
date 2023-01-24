@@ -9,6 +9,7 @@ data class LocalPractitioner(
     var Email: String,
     var Address: String,
     var Chamber_Location_Map: String,
-    var Profile_Photo: String
+    var Profile_Photo: String,
+    var latLong: LatLong
 
 )

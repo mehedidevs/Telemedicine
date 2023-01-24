@@ -11,6 +11,7 @@ data class Patient(
     var Post_Office: String,
     var Police_Station: String,
     var District: String,
-    var Profile_Photo: String
+    var Profile_Photo: String,
+    var latLong: LatLong
 
 )
