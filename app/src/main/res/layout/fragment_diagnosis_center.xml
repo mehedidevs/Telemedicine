@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".DiagnosisCenterFragment">
+    tools:context=".register.DiagnosisCenterFragment">
     
     <ScrollView
         android:layout_width="match_parent"
@@ -19,8 +19,8 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/logo"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:src="@mipmap/ic_launcher"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -217,6 +217,7 @@
                 android:background="@drawable/btn_bg"
                 android:fontFamily="@font/roboto"
                 android:text="Registration"
+                android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="21sp"
                 android:textStyle="bold"

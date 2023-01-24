@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.ju.telemedicineju.HomeFragment"
+        android:name="com.ju.telemedicineju.main_ui.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/startFragment"
-        android:name="com.ju.telemedicineju.StartFragment"
+        android:name="com.ju.telemedicineju.register.StartFragment"
         android:label="fragment_start"
         tools:layout="@layout/fragment_start" >
         <action
@@ -23,45 +23,67 @@
             android:id="@+id/action_startFragment_to_registerFragment"
             app:destination="@id/registerFragment"
             app:popUpTo="@id/startFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.ju.telemedicineju.LoginFragment"
+        android:name="com.ju.telemedicineju.register.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" />
     <fragment
         android:id="@+id/pharmacyFragment"
-        android:name="com.ju.telemedicineju.PharmacyFragment"
+        android:name="com.ju.telemedicineju.register.PharmacyFragment"
         android:label="fragment_pharmacy"
         tools:layout="@layout/fragment_pharmacy" />
     <fragment
         android:id="@+id/patientFragment"
-        android:name="com.ju.telemedicineju.PatientFragment"
+        android:name="com.ju.telemedicineju.register.PatientFragment"
         android:label="fragment_patient"
         tools:layout="@layout/fragment_patient" />
     <fragment
         android:id="@+id/medicineFragment"
-        android:name="com.ju.telemedicineju.MedicineFragment"
+        android:name="com.ju.telemedicineju.register.MedicineFragment"
         android:label="fragment_medicine"
         tools:layout="@layout/fragment_medicine" />
     <fragment
         android:id="@+id/localPractitiorFragment"
-        android:name="com.ju.telemedicineju.LocalPractitiorFragment"
+        android:name="com.ju.telemedicineju.register.LocalPractitiorFragment"
         android:label="fragment_local_practitior"
         tools:layout="@layout/fragment_local_practitior" />
     <fragment
         android:id="@+id/doctorFragment"
-        android:name="com.ju.telemedicineju.DoctorFragment"
+        android:name="com.ju.telemedicineju.register.DoctorFragment"
         android:label="fragment_doctor"
         tools:layout="@layout/fragment_doctor" />
     <fragment
         android:id="@+id/diagnosisCenterFragment"
-        android:name="com.ju.telemedicineju.DiagnosisCenterFragment"
+        android:name="com.ju.telemedicineju.register.DiagnosisCenterFragment"
         android:label="fragment_diagnosis_center"
         tools:layout="@layout/fragment_diagnosis_center" />
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.ju.telemedicineju.RegisterFragment"
+        android:name="com.ju.telemedicineju.register.RegisterFragment"
         android:label="fragment_register"
-        tools:layout="@layout/fragment_register" />
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_diagnosisCenterFragment"
+            app:destination="@id/diagnosisCenterFragment" />
+        <action
+            android:id="@+id/action_registerFragment_to_doctorFragment"
+            app:destination="@id/doctorFragment" />
+        <action
+            android:id="@+id/action_registerFragment_to_localPractitiorFragment"
+            app:destination="@id/localPractitiorFragment" />
+        <action
+            android:id="@+id/action_registerFragment_to_patientFragment"
+            app:destination="@id/patientFragment" />
+        <action
+            android:id="@+id/action_registerFragment_to_medicineFragment"
+            app:destination="@id/medicineFragment" />
+        <action
+            android:id="@+id/action_registerFragment_to_pharmacyFragment"
+            app:destination="@id/pharmacyFragment" />
+    </fragment>
 </navigation>
