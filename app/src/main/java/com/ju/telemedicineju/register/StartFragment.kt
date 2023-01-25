@@ -22,6 +22,9 @@ class StartFragment : BaseOnBoardFragment<FragmentStartBinding>() {
         binding.loginBtn.setOnClickListener {
             findNavController().navigate(R.id.action_startFragment_to_homeFragment)
         }
+        binding.registerBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_startFragment_to_registerFragment)
+        }
 
     }
 
