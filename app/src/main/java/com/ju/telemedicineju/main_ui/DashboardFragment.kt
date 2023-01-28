@@ -17,8 +17,6 @@ class DashboardFragment : BaseOnBoardFragment<FragmentDashnboardBinding>() {
 
     override fun configUi() {
 
-
-
-
     }
+
 }

@@ -3,13 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/startFragment">
+    app:startDestination="@id/doctorsPaymentFragment">
 
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.ju.telemedicineju.main_ui.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_doctorsFragment"
+            app:destination="@id/doctorsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/startFragment"
         android:name="com.ju.telemedicineju.register.StartFragment"
@@ -87,4 +91,23 @@
             android:id="@+id/action_registerFragment_to_pharmacyFragment"
             app:destination="@id/pharmacyFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/doctorsFragment"
+        android:name="com.ju.telemedicineju.main_ui.DoctorsFragment"
+        android:label="fragment_doctors"
+        tools:layout="@layout/fragment_doctors" >
+        <action
+            android:id="@+id/action_doctorsFragment_to_doctorsDetailsFragment"
+            app:destination="@id/doctorsDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/doctorsDetailsFragment"
+        android:name="com.ju.telemedicineju.main_ui.DoctorsDetailsFragment"
+        android:label="fragment_doctors_details"
+        tools:layout="@layout/fragment_doctors_details" />
+    <fragment
+        android:id="@+id/doctorsPaymentFragment"
+        android:name="com.ju.telemedicineju.DoctorsPaymentFragment"
+        android:label="fragment_doctors_payment"
+        tools:layout="@layout/fragment_doctors_payment" />
 </navigation>
