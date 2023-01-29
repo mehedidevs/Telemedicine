@@ -2,24 +2,16 @@ package com.ju.telemedicineju.register
 
 import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import com.canhub.cropper.CropImage
 import com.canhub.cropper.CropImageContract
 import com.canhub.cropper.CropImageContractOptions
 import com.canhub.cropper.CropImageOptions
-import com.ju.telemedicineju.R
 import com.ju.telemedicineju.databinding.FragmentDoctorBinding
-import com.ju.telemedicineju.databinding.FragmentStartBinding
-import java.io.File
-import java.text.SimpleDateFormat
-import java.util.*
 
 class DoctorFragment : Fragment() {
 
