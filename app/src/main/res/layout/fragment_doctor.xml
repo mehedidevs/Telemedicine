@@ -195,16 +195,6 @@
                 android:layout_marginTop="20dp"
                 android:src="@drawable/ic_baseline_insert_photo_24" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:visibility="gone"
-                android:id="@+id/previewPhoto"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/takePhoto"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/ic_baseline_insert_photo_24" />
 
 
             <androidx.appcompat.widget.AppCompatButton
@@ -222,7 +212,7 @@
                 android:textColor="@color/white"
                 android:textSize="21sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/previewPhoto"
+                app:layout_constraintTop_toBottomOf="@id/takePhoto"
                 app:layout_constraintBottom_toBottomOf="parent" />
 
 
