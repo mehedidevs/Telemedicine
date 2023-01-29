@@ -47,6 +47,28 @@ class RegisterFragment : Fragment() {
             val bundle = bundleOf("lat" to lat)
             findNavController().navigate(R.id.action_registerFragment_to_patientFragment, bundle)
         }
+        binding.pdoctorBtn.setOnClickListener {
+            //val bundle = bundleOf("lat" to lat)
+            findNavController().navigate(R.id.action_registerFragment_to_doctorFragment)
+        }
+
+        binding.diagnosisBtn.setOnClickListener {
+            //val bundle = bundleOf("lat" to lat)
+            findNavController().navigate(R.id.action_registerFragment_to_diagnosisCenterFragment)
+        }
+        binding.medicineBtn.setOnClickListener {
+            //val bundle = bundleOf("lat" to lat)
+            findNavController().navigate(R.id.action_registerFragment_to_medicineFragment)
+        }
+        binding.localPractBtn.setOnClickListener {
+            //val bundle = bundleOf("lat" to lat)
+            findNavController().navigate(R.id.action_registerFragment_to_localPractitiorFragment)
+        }
+
+        binding.pharmacyBtn.setOnClickListener {
+            //val bundle = bundleOf("lat" to lat)
+            findNavController().navigate(R.id.action_registerFragment_to_pharmacyFragment)
+        }
 
 
         return binding.root

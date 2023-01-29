@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/doctorsPaymentFragment">
+    app:startDestination="@id/startFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -46,7 +46,13 @@
         android:id="@+id/patientFragment"
         android:name="com.ju.telemedicineju.register.PatientFragment"
         android:label="fragment_patient"
-        tools:layout="@layout/fragment_patient" />
+        tools:layout="@layout/fragment_patient" >
+        <action
+            android:id="@+id/action_patientFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/patientFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/medicineFragment"
         android:name="com.ju.telemedicineju.register.MedicineFragment"
