@@ -61,7 +61,13 @@
         android:id="@+id/doctorFragment"
         android:name="com.ju.telemedicineju.register.DoctorFragment"
         android:label="fragment_doctor"
-        tools:layout="@layout/fragment_doctor" />
+        tools:layout="@layout/fragment_doctor" >
+        <action
+            android:id="@+id/action_doctorFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/doctorFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/diagnosisCenterFragment"
         android:name="com.ju.telemedicineju.register.DiagnosisCenterFragment"
@@ -99,6 +105,11 @@
         <action
             android:id="@+id/action_doctorsFragment_to_doctorsDetailsFragment"
             app:destination="@id/doctorsDetailsFragment" />
+        <action
+            android:id="@+id/action_doctorsFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/doctorsFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/doctorsDetailsFragment"

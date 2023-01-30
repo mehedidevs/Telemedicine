@@ -1,17 +1,32 @@
 package com.ju.telemedicineju.register
 
+import android.app.Dialog
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.canhub.cropper.CropImage
 import com.canhub.cropper.CropImageContract
 import com.canhub.cropper.CropImageContractOptions
 import com.canhub.cropper.CropImageOptions
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
+import com.ju.telemedicineju.R
+import com.ju.telemedicineju.ValidateInputField
 import com.ju.telemedicineju.databinding.FragmentDoctorBinding
+import com.ju.telemedicineju.model.input.Doctor
+import com.ju.telemedicineju.model.input.LatLong
+
+
 
 class DoctorFragment : Fragment() {
 
@@ -20,6 +35,18 @@ class DoctorFragment : Fragment() {
     private val binding get() = _binding!!
 
     private var outputUri: Uri? = null
+    lateinit var progressDialog: Dialog
+
+    var name : String = ""
+    var email : String = ""
+    var phone : String = ""
+    var pass : String = ""
+    var address : String = ""
+    var gender : String = ""
+    var qualification : String = ""
+    var chamber : String = ""
+    var photoUrl: String = ""
+    var user_id : String = ""
 
     private val cropImage = registerForActivityResult(CropImageContract()) { result ->
         when {
@@ -47,8 +74,131 @@ class DoctorFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        progressDialog = Dialog(requireContext())
+        progressDialog.setTitle("Please wait...")
+
         binding.takePhoto.setOnClickListener {
             startCameraWithoutUri(includeCamera = true, includeGallery = true)
+        }
+
+        binding.registerBtn.setOnClickListener {
+            name = binding.name.text.toString()
+            email = binding.email.text.toString()
+            phone = binding.phone.text.toString()
+            pass = binding.pass.text.toString()
+            address = binding.address.text.toString()
+            gender = binding.gender.text.toString()
+            qualification = binding.qualification.text.toString()
+            chamber = binding.chamberLocation.text.toString()
+
+            if (name.equals("")){
+                ValidateInputField(requireContext(),"Name field can't be empty!")
+            }else if (email.equals("")){
+                ValidateInputField(requireContext(),"Email field can't be empty!")
+            }else if (phone.equals("")){
+                ValidateInputField(requireContext(),"Phone field can't be empty!")
+            }else if (address.equals("")){
+                ValidateInputField(requireContext(),"Address field can't be empty!")
+            }else if (gender.equals("")){
+                ValidateInputField(requireContext(),"Gender field can't be empty!")
+            }else if (qualification.equals("")){
+                ValidateInputField(requireContext(),"Qualification field can't be empty!")
+            }else if (chamber.equals("")){
+                ValidateInputField(requireContext(),"Chamber field can't be empty!")
+            }else if (pass.equals("")){
+                ValidateInputField(requireContext(),"Password field can't be empty!")
+            }else if (pass.length<6){
+                ValidateInputField(requireContext(),"Password must be more than 6 character!")
+            }else{
+                progressDialog.show()
+                FirebaseAuth.getInstance().createUserWithEmailAndPassword(email!!, pass!!).addOnCompleteListener{
+                    if (it.isSuccessful){
+                        uploadPhotoToStorage()
+                        //progressDialog.dismiss()
+                        //findNavController().navigate(R.id.action_patientFragment_to_homeFragment)
+                    }
+
+                }.addOnFailureListener {
+                    progressDialog.dismiss()
+                    it.localizedMessage?.let { it1 ->
+                        ValidateInputField(requireContext(), it1.toString())
+                    }
+                }
+            }
+
+        }
+
+
+    }
+
+    private fun uploadPhotoToStorage() {
+        val storage = Firebase.storage
+        var storageRef = storage.reference
+        var current_user = FirebaseAuth.getInstance().currentUser
+        if (current_user != null){
+            user_id = current_user.uid
+        }
+        var imagesRef: StorageReference? = storageRef.child("photos").child(user_id+System.currentTimeMillis())
+
+        if (imagesRef != null) {
+            outputUri?.let { imagesRef.putFile(it) }?.addOnCompleteListener {
+                if (it.isSuccessful){
+                    val photoUri = it.result
+                    photoUrl = photoUri.toString()
+
+                    uploadToDatabase()
+                }
+
+            }?.addOnFailureListener {
+                progressDialog.dismiss()
+                it.localizedMessage?.let { it1 ->
+                    ValidateInputField(requireContext(),
+                        it1.toString())
+                }
+            }
+        }
+    }
+
+    private fun uploadToDatabase() {
+        val database = FirebaseDatabase.getInstance()
+        val myRef = database.getReference("Users")
+        val databaseRef = myRef.child("Doctors")
+        var lat_lng =  LatLong("","")
+        if (user_id != null){
+            var doctor = Doctor(
+                user_id,
+                name,
+                gender,
+                qualification,
+                phone,
+                email,
+                address,
+                chamber,
+                photoUrl,
+                lat_lng)
+            /*var map = HashMap<String,String>()
+            map.put("Doctor_ID", user_id!!)
+            map.put("Full_Name", name!!)
+            map.put("Gender", gender!!)
+            map.put("Qualification", qualification!!)
+            map.put("Phone_Number", phone!!)
+            map.put("Email", email!!)
+            map.put("Address", address!!)
+            map.put("Chamber_Location_Map", chamber!!)
+            map.put("Profile_Photo", photoUrl!!)
+            map.put("latLong", lat_lng.toString())*/
+
+
+            databaseRef.child(user_id)
+                .setValue(doctor).addOnCompleteListener {
+                    if (it.isSuccessful){
+                        progressDialog.dismiss()
+                        findNavController().navigate(R.id.action_doctorFragment_to_homeFragment)
+                    }
+            }.addOnFailureListener {
+                    progressDialog.dismiss()
+                    ValidateInputField(requireContext(),it.localizedMessage.toString())
+            }
         }
 
 
@@ -67,14 +217,14 @@ class DoctorFragment : Fragment() {
         )
     }
 
-    private fun startCameraWithUri() {
+   /* private fun startCameraWithUri() {
         cropImage.launch(
             CropImageContractOptions(
                 uri = outputUri,
                 cropImageOptions = CropImageOptions(),
             ),
         )
-    }
+    }*/
 
     private fun showErrorMessage(message: String) {
 
@@ -82,10 +232,9 @@ class DoctorFragment : Fragment() {
     }
 
     private fun handleCropImageResult(uri: String) {
-        var mUri=Uri.parse(uri)
-
-
-        binding.takePhoto.setImageURI(mUri)
+        outputUri=Uri.parse(uri)
+        binding.takePhoto.setImageURI(outputUri)
+        Log.i("TAG", "handleCropImageResult: "+outputUri)
 
         //  SampleResultScreen.start(this, null, Uri.parse(uri.replace("file:", "")), null)
     }

@@ -4,15 +4,14 @@ import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.firebase.auth.FirebaseAuth
-import com.ju.telemedicineju.R
 import com.ju.telemedicineju.ValidateInputField
 import com.ju.telemedicineju.databinding.FragmentPatientBinding
 
@@ -40,12 +39,8 @@ class PatientFragment : Fragment() {
         progressDialog.setTitle("Please wait...")
 
 
-        binding.takePhoto.setOnClickListener {
-            ImagePicker.with(requireActivity())
-                .crop()
-                .compress(1024)
-                .start(101)
-        }
+
+
 
         binding.registerBtn.setOnClickListener {
             var name = binding.name.text.toString()
@@ -79,7 +74,7 @@ class PatientFragment : Fragment() {
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,pass).addOnCompleteListener{
                     if (it.isSuccessful){
                         progressDialog.dismiss()
-                        findNavController().navigate(R.id.action_patientFragment_to_homeFragment)
+                        //findNavController().navigate(R.id.action_patientFragment_to_homeFragment)
                     }
 
                 }.addOnFailureListener {
@@ -96,15 +91,7 @@ class PatientFragment : Fragment() {
         return binding.root
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 101 && resultCode == Activity.RESULT_OK && data != null){
-            var photo = data.data
-            binding.previewPhoto.visibility
-            Log.i("TAG", "onActivityResult: "+data.data)
-            binding.previewPhoto.setImageURI(photo)
-        }
-    }
+
 
 
 }
