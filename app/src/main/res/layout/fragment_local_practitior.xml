@@ -8,8 +8,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -25,8 +24,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="50dp"
-                />
+                android:layout_marginTop="50dp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/name1"
@@ -48,7 +46,46 @@
                     android:layout_marginRight="10dp" />
 
             </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/gender1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Gender"
+                android:layout_marginTop="30dp"
+                app:startIconDrawable="@drawable/ic_baseline_person_24"
+                app:endIconMode="clear_text"
+                app:layout_constraintTop_toBottomOf="@id/name1"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/qualification1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Qualification"
+                android:layout_marginTop="30dp"
+                app:startIconDrawable="@drawable/ic_baseline_person_24"
+                app:endIconMode="clear_text"
+                app:layout_constraintTop_toBottomOf="@id/gender1"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/qualification"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/phn1"
                 android:layout_width="match_parent"
@@ -57,7 +94,7 @@
                 android:layout_marginTop="10dp"
                 app:startIconDrawable="@drawable/ic_baseline_call_24"
                 app:endIconMode="clear_text"
-                app:layout_constraintTop_toBottomOf="@id/name1"
+                app:layout_constraintTop_toBottomOf="@id/qualification1"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -69,6 +106,7 @@
                     android:layout_marginRight="10dp" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/email1"
                 android:layout_width="match_parent"
@@ -89,6 +127,7 @@
                     android:layout_marginRight="10dp" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/address1"
                 android:layout_width="match_parent"
@@ -109,11 +148,12 @@
                     android:layout_marginRight="10dp" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/postoffice1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Post office"
+                android:hint="Chamber location"
                 android:layout_marginTop="10dp"
                 app:startIconDrawable="@drawable/ic_baseline_add_location_24"
                 app:endIconMode="clear_text"
@@ -121,7 +161,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/postOffice"
+                    android:id="@+id/chamberLocation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -129,40 +169,22 @@
                     android:layout_marginRight="10dp" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
+
+
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/police1"
+                android:id="@+id/pass1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Police station"
+                android:hint="Password"
                 android:layout_marginTop="10dp"
-                app:startIconDrawable="@drawable/ic_baseline_local_police_24"
-                app:endIconMode="clear_text"
+                app:startIconDrawable="@drawable/baseline_password_24"
+                app:endIconMode="password_toggle"
                 app:layout_constraintTop_toBottomOf="@id/postoffice1"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/policeStation"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/district1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="District"
-                android:layout_marginTop="10dp"
-                app:startIconDrawable="@drawable/ic_baseline_home_24"
-                app:endIconMode="clear_text"
-                app:layout_constraintTop_toBottomOf="@id/police1"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/district"
+                    android:id="@+id/pass"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -176,11 +198,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/district1"
+                app:layout_constraintTop_toBottomOf="@id/pass1"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="10dp"
                 android:text="Please select your profile photo"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/takePhoto"
@@ -190,20 +212,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/text"
                 android:layout_marginTop="20dp"
-                android:src="@drawable/ic_baseline_insert_photo_24"
-                />
+                android:src="@drawable/ic_baseline_insert_photo_24" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:visibility="gone"
-                android:id="@+id/previewPhoto"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/takePhoto"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/ic_baseline_insert_photo_24"
-                />
 
 
             <androidx.appcompat.widget.AppCompatButton
@@ -221,9 +231,8 @@
                 android:textColor="@color/white"
                 android:textSize="21sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/previewPhoto"
-                app:layout_constraintBottom_toBottomOf="parent"
-                />
+                app:layout_constraintTop_toBottomOf="@id/takePhoto"
+                app:layout_constraintBottom_toBottomOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

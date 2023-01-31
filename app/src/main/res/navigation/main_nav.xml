@@ -41,22 +41,46 @@
         android:id="@+id/pharmacyFragment"
         android:name="com.ju.telemedicineju.register.PharmacyFragment"
         android:label="fragment_pharmacy"
-        tools:layout="@layout/fragment_pharmacy" />
+        tools:layout="@layout/fragment_pharmacy" >
+        <action
+            android:id="@+id/action_pharmacyFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/pharmacyFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/patientFragment"
         android:name="com.ju.telemedicineju.register.PatientFragment"
         android:label="fragment_patient"
-        tools:layout="@layout/fragment_patient" />
+        tools:layout="@layout/fragment_patient" >
+        <action
+            android:id="@+id/action_patientFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/patientFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/medicineFragment"
         android:name="com.ju.telemedicineju.register.MedicineFragment"
         android:label="fragment_medicine"
-        tools:layout="@layout/fragment_medicine" />
+        tools:layout="@layout/fragment_medicine" >
+        <action
+            android:id="@+id/action_medicineFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/medicineFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/localPractitiorFragment"
         android:name="com.ju.telemedicineju.register.LocalPractitiorFragment"
         android:label="fragment_local_practitior"
-        tools:layout="@layout/fragment_local_practitior" />
+        tools:layout="@layout/fragment_local_practitior" >
+        <action
+            android:id="@+id/action_localPractitiorFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/localPractitiorFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/doctorFragment"
         android:name="com.ju.telemedicineju.register.DoctorFragment"
@@ -72,7 +96,13 @@
         android:id="@+id/diagnosisCenterFragment"
         android:name="com.ju.telemedicineju.register.DiagnosisCenterFragment"
         android:label="fragment_diagnosis_center"
-        tools:layout="@layout/fragment_diagnosis_center" />
+        tools:layout="@layout/fragment_diagnosis_center" >
+        <action
+            android:id="@+id/action_diagnosisCenterFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/diagnosisCenterFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.ju.telemedicineju.register.RegisterFragment"

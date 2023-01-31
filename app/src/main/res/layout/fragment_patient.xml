@@ -63,7 +63,7 @@
                     android:id="@+id/gender"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
+                    android:inputType="text"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp" />
 
@@ -74,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Date of birth"
                 android:layout_marginTop="10dp"
-                app:startIconDrawable="@drawable/calender"
+                app:startIconDrawable="@drawable/baseline_calendar_month_24"
                 app:endIconMode="clear_text"
                 app:layout_constraintTop_toBottomOf="@id/gender1"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -83,7 +83,7 @@
                     android:id="@+id/dateOfBirth"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
+                    android:inputType="text"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp" />
 
