@@ -88,6 +88,26 @@
 
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/specialization1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Qualification"
+                android:layout_marginTop="30dp"
+                app:startIconDrawable="@drawable/ic_baseline_person_24"
+                app:endIconMode="clear_text"
+                app:layout_constraintTop_toBottomOf="@id/qualification1"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/specialization"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/phn1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -95,7 +115,7 @@
                 android:layout_marginTop="10dp"
                 app:startIconDrawable="@drawable/ic_baseline_call_24"
                 app:endIconMode="clear_text"
-                app:layout_constraintTop_toBottomOf="@id/qualification1"
+                app:layout_constraintTop_toBottomOf="@id/specialization1"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -170,6 +190,26 @@
                     android:layout_marginRight="10dp" />
 
             </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fee1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Fee"
+                android:layout_marginTop="10dp"
+                app:startIconDrawable="@drawable/ic_baseline_add_location_24"
+                app:endIconMode="clear_text"
+                app:layout_constraintTop_toBottomOf="@id/postoffice1"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/fee"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
 
 
@@ -181,7 +221,7 @@
                 android:layout_marginTop="10dp"
                 app:startIconDrawable="@drawable/baseline_password_24"
                 app:endIconMode="password_toggle"
-                app:layout_constraintTop_toBottomOf="@id/postoffice1"
+                app:layout_constraintTop_toBottomOf="@id/fee1"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText

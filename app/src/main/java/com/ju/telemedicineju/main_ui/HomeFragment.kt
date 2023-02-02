@@ -7,8 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
+import com.ju.telemedicineju.R
 import com.ju.telemedicineju.adapter.SpecialistDoctorAdapter
 import com.ju.telemedicineju.databinding.FragmentHomeBinding
 
@@ -20,7 +22,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private var outputUri: Uri? = null
+
     lateinit var progressDialog: Dialog
 
     val list = ArrayList<Doctor>()
@@ -34,8 +36,14 @@ class HomeFragment : Fragment() {
 
         val specialDocRef = FirebaseDatabase.getInstance().getReference("Users").child("Doctors")
 
+
+        binding.doctorBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_doctorsFragment)
+        }
+
         specialDocRef.addValueEventListener(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
+                list.clear()
                 val data = snapshot.children
                 data.forEach{snp ->
                     val doctor:Doctor=snp.getValue(Doctor::class.java)!!
@@ -45,6 +53,7 @@ class HomeFragment : Fragment() {
 
                 val adapter = SpecialistDoctorAdapter(list,requireContext())
                 binding.speceialistDoctor.adapter = adapter
+                binding.ourDoctorRcv.adapter = adapter
 
             }
 

@@ -19,7 +19,7 @@ class SpecialistDoctorAdapter(private val list: List<Doctor>, val context: Conte
 
         val model = list[position]
         holder.name.text = model.Full_Name
-        Glide.with(context).load(model.Profile_Photo).into(holder.profile)
+        Glide.with(context).load(model.Profile_Photo).placeholder(R.drawable.ic_doctor).into(holder.profile)
     }
     override fun getItemCount(): Int {
        return list.size

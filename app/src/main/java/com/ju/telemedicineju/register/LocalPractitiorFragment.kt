@@ -111,19 +111,20 @@ class LocalPractitiorFragment : Fragment() {
                 ValidateInputField(requireContext(),"Password must be more than 6 character!")
             }else{
                 progressDialog.show()
-                FirebaseAuth.getInstance().createUserWithEmailAndPassword(email!!, pass!!).addOnCompleteListener{
-                    if (it.isSuccessful){
-                        uploadPhotoToStorage()
-                        //progressDialog.dismiss()
-                        //findNavController().navigate(R.id.action_patientFragment_to_homeFragment)
-                    }
+                FirebaseAuth.getInstance().createUserWithEmailAndPassword(email!!, pass!!)
+                    .addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            outputUri?.let { it1 -> uploadPhotoToStorage(it1) }
+                            //progressDialog.dismiss()
+                            //findNavController().navigate(R.id.action_patientFragment_to_homeFragment)
+                        }
 
-                }.addOnFailureListener {
-                    progressDialog.dismiss()
-                    it.localizedMessage?.let { it1 ->
-                        ValidateInputField(requireContext(), it1.toString())
+                    }.addOnFailureListener {
+                        progressDialog.dismiss()
+                        it.localizedMessage?.let { it1 ->
+                            ValidateInputField(requireContext(), it1.toString())
+                        }
                     }
-                }
             }
 
         }
@@ -131,35 +132,43 @@ class LocalPractitiorFragment : Fragment() {
 
     }
 
-    private fun uploadPhotoToStorage() {
+    private fun uploadPhotoToStorage(outputUri: Uri) {
         val storage = Firebase.storage
         var storageRef = storage.reference
         var current_user = FirebaseAuth.getInstance().currentUser
-        if (current_user != null){
+        if (current_user != null) {
             user_id = current_user.uid
         }
-        var imagesRef: StorageReference? = storageRef.child("photos").child(user_id+System.currentTimeMillis())
+        var imagesRef: StorageReference? =
+            storageRef.child("photos").child(user_id + System.currentTimeMillis())
 
         if (imagesRef != null) {
-            outputUri?.let { imagesRef.putFile(it) }?.addOnCompleteListener {
-                if (it.isSuccessful){
-                    val photoUri = it.result
-                    photoUrl = photoUri.toString()
+            outputUri.let { imagesRef.putFile(it) }.addOnCompleteListener {
+                if (it.isSuccessful) {
+                    imagesRef.downloadUrl.addOnCompleteListener { task2 ->
 
-                    uploadToDatabase()
+                        val photoUri =task2.result
+                        var photoUrl = photoUri.toString()
+
+                        uploadToDatabase(photoUrl)
+                    }
+
+
                 }
 
-            }?.addOnFailureListener {
+            }.addOnFailureListener {
                 progressDialog.dismiss()
                 it.localizedMessage?.let { it1 ->
-                    ValidateInputField(requireContext(),
-                        it1.toString())
+                    ValidateInputField(
+                        requireContext(),
+                        it1.toString()
+                    )
                 }
             }
         }
     }
 
-    private fun uploadToDatabase() {
+    private fun uploadToDatabase(photoUri: String) {
         val database = FirebaseDatabase.getInstance()
         val myRef = database.getReference("Users")
         val databaseRef = myRef.child("LocalPractitioner")
@@ -174,7 +183,7 @@ class LocalPractitiorFragment : Fragment() {
                 email,
                 address,
                 chamber,
-                photoUrl,
+                photoUri,
                 lat_lng)
 
 

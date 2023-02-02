@@ -43,7 +43,9 @@ class DoctorFragment : Fragment() {
     var address: String = ""
     var gender: String = ""
     var qualification: String = ""
+    var specialization: String = ""
     var chamber: String = ""
+    var fee: String = ""
     var photoUrl: String = ""
     var user_id: String = ""
 
@@ -88,7 +90,9 @@ class DoctorFragment : Fragment() {
             address = binding.address.text.toString()
             gender = binding.gender.text.toString()
             qualification = binding.qualification.text.toString()
+            specialization = binding.specialization.text.toString()
             chamber = binding.chamberLocation.text.toString()
+            fee = binding.fee.text.toString()
 
             if (name.equals("")) {
                 ValidateInputField(requireContext(), "Name field can't be empty!")
@@ -102,8 +106,12 @@ class DoctorFragment : Fragment() {
                 ValidateInputField(requireContext(), "Gender field can't be empty!")
             } else if (qualification.equals("")) {
                 ValidateInputField(requireContext(), "Qualification field can't be empty!")
+            } else if (specialization.equals("")) {
+                ValidateInputField(requireContext(), "Specialization field can't be empty!")
             } else if (chamber.equals("")) {
                 ValidateInputField(requireContext(), "Chamber field can't be empty!")
+            }else if (fee.equals("")) {
+                ValidateInputField(requireContext(), "Fee field can't be empty!")
             } else if (pass.equals("")) {
                 ValidateInputField(requireContext(), "Password field can't be empty!")
             } else if (pass.length < 6) {
@@ -177,25 +185,15 @@ class DoctorFragment : Fragment() {
             name,
             gender,
             qualification,
+            specialization,
             phone,
             email,
             address,
             chamber,
             photoUri,
+            fee,
             lat_lng
         )
-        /*var map = HashMap<String,String>()
-    map.put("Doctor_ID", user_id!!)
-    map.put("Full_Name", name!!)
-    map.put("Gender", gender!!)
-    map.put("Qualification", qualification!!)
-    map.put("Phone_Number", phone!!)
-    map.put("Email", email!!)
-    map.put("Address", address!!)
-    map.put("Chamber_Location_Map", chamber!!)
-    map.put("Profile_Photo", photoUrl!!)
-    map.put("latLong", lat_lng.toString())*/
-
 
         databaseRef.child(user_id)
             .setValue(doctor).addOnCompleteListener {
@@ -223,15 +221,7 @@ class DoctorFragment : Fragment() {
             ),
         )
     }
-
-    /* private fun startCameraWithUri() {
-         cropImage.launch(
-             CropImageContractOptions(
-                 uri = outputUri,
-                 cropImageOptions = CropImageOptions(),
-             ),
-         )
-     }*/
+    
 
     private fun showErrorMessage(message: String) {
 

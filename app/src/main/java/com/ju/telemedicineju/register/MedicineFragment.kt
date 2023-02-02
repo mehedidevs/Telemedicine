@@ -93,20 +93,8 @@ class MedicineFragment : Fragment() {
                 ValidateInputField(requireContext(),"Price field can't be empty!")
             }else{
                 progressDialog.show()
-                uploadPhotoToStorage()
-                /*FirebaseAuth.getInstance().createUserWithEmailAndPassword(email!!, pass!!).addOnCompleteListener{
-                    if (it.isSuccessful){
-                        uploadPhotoToStorage()
-                        //progressDialog.dismiss()
-                        //findNavController().navigate(R.id.action_patientFragment_to_homeFragment)
-                    }
+                outputUri?.let { it1 -> uploadPhotoToStorage(it1) }
 
-                }.addOnFailureListener {
-                    progressDialog.dismiss()
-                    it.localizedMessage?.let { it1 ->
-                        ValidateInputField(requireContext(), it1.toString())
-                    }
-                }*/
             }
 
         }
@@ -114,31 +102,40 @@ class MedicineFragment : Fragment() {
 
     }
 
-    private fun uploadPhotoToStorage() {
+    private fun uploadPhotoToStorage(outputUri: Uri) {
         val storage = Firebase.storage
         var storageRef = storage.reference
-        var imagesRef: StorageReference? = storageRef.child("photos").child(""+System.currentTimeMillis())
+
+        var imagesRef: StorageReference? =
+            storageRef.child("photos").child("" + System.currentTimeMillis())
 
         if (imagesRef != null) {
-            outputUri?.let { imagesRef.putFile(it) }?.addOnCompleteListener {
-                if (it.isSuccessful){
-                    val photoUri = it.result
-                    photoUrl = photoUri.toString()
+            outputUri.let { imagesRef.putFile(it) }.addOnCompleteListener {
+                if (it.isSuccessful) {
+                    imagesRef.downloadUrl.addOnCompleteListener { task2 ->
 
-                    uploadToDatabase()
+                        val photoUri =task2.result
+                        var photoUrl = photoUri.toString()
+
+                        uploadToDatabase(photoUrl)
+                    }
+
+
                 }
 
-            }?.addOnFailureListener {
+            }.addOnFailureListener {
                 progressDialog.dismiss()
                 it.localizedMessage?.let { it1 ->
-                    ValidateInputField(requireContext(),
-                        it1.toString())
+                    ValidateInputField(
+                        requireContext(),
+                        it1.toString()
+                    )
                 }
             }
         }
     }
 
-    private fun uploadToDatabase() {
+    private fun uploadToDatabase(photoUri: String) {
         val database = FirebaseDatabase.getInstance()
         val myRef = database.getReference("Users")
         val databaseRef = myRef.child("Medicine")
@@ -151,7 +148,7 @@ class MedicineFragment : Fragment() {
                 gName,
                 bName,
                 price,
-                photoUrl,
+                photoUri,
                 lat_lng
             )
 

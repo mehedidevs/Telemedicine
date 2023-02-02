@@ -103,7 +103,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/dosctorBtn"
+                android:id="@+id/doctorBtn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -123,11 +123,12 @@
                     app:tint="@color/purple_500" />
 
                 <TextView
+                    android:id="@+id/doctors"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_medium"
                     android:gravity="center"
-                    android:text="Home"
+                    android:text="Doctors"
                     android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
                     android:textColor="@color/purple_500" />
 
